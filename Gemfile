@@ -14,6 +14,12 @@ gem 'unicorn'
 gem 'seed-fu'
 gem "bower-rails"
 gem 'airbrake'
+gem 'simple_form'
+
+# Trailblazer architecture
+gem 'trailblazer', git: 'https://github.com/apotonick/trailblazer.git'
+gem 'reform'
+gem 'cells'
 
 group :development do
   gem 'annotate'
