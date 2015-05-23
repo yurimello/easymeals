@@ -1,0 +1,20 @@
+.navbar-default.sidebar role="navigation"
+  .sidebar-nav.navbar-collapse
+    ul.nav#side-menu
+      li.sidebar-search
+        .input-group.custom-search-form
+          input.form-control type="text" placeholder="Search..."
+          span.input-group-btn
+            button.btn.btn-default type="button"
+              i.fa.fa-search
+      li
+        a href="#"
+          = t("admin.receipes.title")
+          span.fa.arrow
+        ul.nav.nav-second-level
+          li
+            = link_to t("admin.receipes.menu.new"), new_admin_receipe_path
+          li
+            = link_to t("admin.receipes.menu.index"), admin_receipes_path
+
+
