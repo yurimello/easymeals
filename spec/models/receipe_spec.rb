@@ -11,10 +11,18 @@
 #  updated_at  :datetime         not null
 #  category_id :integer
 #  url         :string
+#  author      :string
 #
 
 require 'rails_helper'
 
 RSpec.describe Receipe, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:each) do
+    subject {create(:pasta)}
+  end
+
+  it "test" do
+    expect(subject).to_not eq(nil)
+  end
+
 end

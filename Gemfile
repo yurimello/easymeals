@@ -21,6 +21,10 @@ group :development do
   gem 'annotate'
 end
 
+group :test do
+  gem 'simplecov', :require => false
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'byebug'
@@ -30,5 +34,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'rspec-expectations'
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
 

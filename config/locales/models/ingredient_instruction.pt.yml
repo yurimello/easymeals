@@ -1,0 +1,20 @@
+pt:
+  activerecord:
+    models:
+      ingredient_instruction: Ingrediente
+    attributes:
+      ingredient_instruction:
+        name: Nome
+        how: Como
+        quantity: Quantidade
+        metering: Medida
+        scope: Escopo
+
+    errors:
+      models:
+        ingredient_instruction:
+          attributes:
+            name:
+              blank: Nome do ingrediente não pode ficar em branco
+
+      # will translate User attribute "login" as "Handle"

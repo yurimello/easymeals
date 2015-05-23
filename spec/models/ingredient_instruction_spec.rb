@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: ingredient_receipes
+# Table name: ingredient_instructions
 #
 #  id            :integer          not null, primary key
 #  ingredient_id :integer
@@ -10,10 +10,11 @@
 #  metering      :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  name          :string
 #
 
 require 'rails_helper'
 
-RSpec.describe IngredientReceipe, type: :model do
+RSpec.describe IngredientInstruction, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

@@ -1,7 +1,14 @@
 .nested-fields
-  = f.input :name
-  = f.input :quantity
-  = f.input :metering
-  = f.input :how
-  / = f.input :position
-  = link_to_remove_association "remove ingredient", f
+  .row
+    .col-lg-6
+      = f.input :name
+    .col-lg-6
+      = f.input :scope
+  .row
+    .col-lg-3
+      = f.input :quantity
+    .col-lg-3
+      = f.input :metering
+    .col-lg-6
+      = f.input :how
+  = link_to_remove_association t('admin.receipes.remove_ingredient'), f

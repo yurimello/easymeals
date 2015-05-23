@@ -1,0 +1,20 @@
+pt:
+  admin:
+    receipes:
+      title: Receitas 
+      save: Salvar Receita
+      add_step: Adicionar passo
+      add_ingredient: Adicionar ingrediente
+      remove_step: Remover passo
+      remove_ingredient: Remover ingrediente
+      messages:
+        create_success: Receita criada com sucesso
+        update_success: Receita atualizada com sucesso
+        error: Foram encontrados alguns erros
+      new:
+        heading: Nova Receita
+      edit:
+        heading: Editar Receita
+      form:
+        steps-heading: Passos
+        ingredients-heading: Ingredientes

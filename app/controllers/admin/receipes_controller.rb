@@ -6,17 +6,32 @@ class Admin::ReceipesController < ApplicationController
   
   def new
     @receipe = Receipe.new
-    2.times { @receipe.steps.build }
-    2.times { @receipe.ingredient_instructions.build }
   end
   
   def create
     @receipe = Receipe.new(receipe_params)
     if @receipe.save
+      flash[:success] = I18n.t("admin.receipes.messages.create_success")
       redirect_to admin_receipes_path
     else
+      flash[:error] = I18n.t("admin.receipes.messages.error")
       render action: :new
     end
+  end
+
+  def edit
+    @receipe = Receipe.find(params[:id])
+  end
+
+  def update
+    @receipe = Receipe.find(params[:id])
+    if @receipe.update_attributes(receipe_params)
+      flash[:success] = I18n.t("admin.receipes.messages.update_success")
+      redirect_to admin_receipes_path
+    else
+      flash[:error] = I18n.t("admin.receipes.messages.error")
+      render action: :edit
+    end 
   end
 
   def show
@@ -26,9 +41,9 @@ class Admin::ReceipesController < ApplicationController
   private
   def receipe_params
     params.require(:receipe).permit(
-        :name,
-        steps_attributes: [:id, :_destroy, :name],
-        ingredient_instructions_attributes: [:id, :_destroy, :name, :how, :quantity, :metering]
+        :name, :author, :category_name, :url,
+        steps_attributes: [:id, :_destroy, :description, :scope],
+        ingredient_instructions_attributes: [:id, :_destroy, :name, :how, :quantity, :metering, :scope]
     )
   end
 end

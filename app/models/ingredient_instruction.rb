@@ -19,6 +19,8 @@ class IngredientInstruction < ActiveRecord::Base
 
   before_save :set_ingredient
 
+  validates :name, presence: true
+
 
   def full_instruction
     "#{quantity} #{metering} #{name} #{how}"

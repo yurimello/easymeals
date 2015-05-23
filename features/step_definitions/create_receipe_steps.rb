@@ -12,10 +12,10 @@ end
 
 When(/^add steps$/) do
   # all(".receipe_steps_position > input").last.set "1"
-  all(".receipe_steps_name > input").first.set "leave in the warm water"
+  all(".receipe_steps_description > input").first.set "leave in the warm water"
 
   # all(".receipe_steps_position > input").last.set "2"
-  all(".receipe_steps_name > input").last.set "let cooking for 5 minutes"
+  all(".receipe_steps_description > input").last.set "let cooking for 5 minutes"
 end
 
 When(/^add (\w+) (\w+) ingredient with (\d+) (\w+)( and )?(.*)$/) do |order, ingredient, quantity, metering, conjection, how|

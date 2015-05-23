@@ -11,6 +11,7 @@
 #  updated_at  :datetime         not null
 #  category_id :integer
 #  url         :string
+#  author      :string
 #
 
 class Receipe < ActiveRecord::Base

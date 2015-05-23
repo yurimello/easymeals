@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523044437) do
+ActiveRecord::Schema.define(version: 20150523194600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150523044437) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "name"
+    t.string   "scope"
   end
 
   add_index "ingredient_instructions", ["ingredient_id"], name: "index_ingredient_instructions_on_ingredient_id", using: :btree
@@ -47,11 +48,12 @@ ActiveRecord::Schema.define(version: 20150523044437) do
     t.integer  "level"
     t.integer  "time_to_do"
     t.text     "obs"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "category_id"
     t.string   "url"
     t.string   "author"
+    t.string   "category_name"
   end
 
   add_index "receipes", ["category_id"], name: "index_receipes_on_category_id", using: :btree
@@ -59,9 +61,10 @@ ActiveRecord::Schema.define(version: 20150523044437) do
   create_table "steps", force: :cascade do |t|
     t.integer  "position"
     t.integer  "receipe_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "description"
+    t.string   "scope"
   end
 
   add_index "steps", ["receipe_id"], name: "index_steps_on_receipe_id", using: :btree

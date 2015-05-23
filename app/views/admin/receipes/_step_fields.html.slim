@@ -1,4 +1,8 @@
 .nested-fields
-  = f.input :name
+  .row
+    .col-lg-6
+      = f.input :description
+    .col-lg-6
+      = f.input :scope
   / = f.input :position
-  = link_to_remove_association "remove step", f
+  = link_to_remove_association t('admin.receipes.remove_step'), f
