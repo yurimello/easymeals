@@ -11,6 +11,9 @@ pt:
         create_success: Receita criada com sucesso
         update_success: Receita atualizada com sucesso
         error: Foram encontrados alguns erros
+      menu:
+        new: Criar Receita
+        index: Lista de Receitas
       new:
         heading: Nova Receita
       edit:

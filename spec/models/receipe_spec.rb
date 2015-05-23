@@ -11,7 +11,6 @@
 #  updated_at  :datetime         not null
 #  category_id :integer
 #  url         :string
-#  author      :string
 #
 
 require 'rails_helper'
@@ -22,7 +21,7 @@ RSpec.describe Receipe, type: :model do
   end
 
   it "test" do
-    expect(subject).to_not eq(nil)
+    expect(subject).to eq(nil)
   end
 
 end
