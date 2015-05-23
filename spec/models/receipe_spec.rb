@@ -20,8 +20,4 @@ RSpec.describe Receipe, type: :model do
     subject {create(:pasta)}
   end
 
-  it "test" do
-    expect(subject).to eq(nil)
-  end
-
 end

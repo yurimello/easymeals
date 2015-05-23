@@ -27,7 +27,7 @@ When(/^add (\w+) (\w+) ingredient with (\d+) (\w+)( and )?(.*)$/) do |order, ing
 end
 
 When(/^submit form$/) do
-  click_button "Create Receipe"
+  click_button I18n.t("admin.receipes.save")
 end
 
 # Then(/^The receipe must be created with:$/) do |table|
