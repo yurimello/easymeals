@@ -5,12 +5,13 @@
 #  id            :integer          not null, primary key
 #  ingredient_id :integer
 #  receipe_id    :integer
-#  name          :string
 #  quantity      :string
 #  how           :string
 #  metering      :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  name          :string
+#  scope         :string
 #
 
 class IngredientInstruction < ActiveRecord::Base

@@ -2,16 +2,18 @@
 #
 # Table name: receipes
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  level       :integer
-#  time_to_do  :integer
-#  obs         :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  category_id :integer
-#  url         :string
-#  author      :string
+#  id            :integer          not null, primary key
+#  name          :string
+#  level         :integer
+#  time_to_do    :integer
+#  obs           :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  category_id   :integer
+#  url           :string
+#  author        :string
+#  category_name :string
+#  cover         :string
 #
 
 class Receipe < ActiveRecord::Base
@@ -23,4 +25,6 @@ class Receipe < ActiveRecord::Base
 
   accepts_nested_attributes_for :steps, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :ingredient_instructions, :reject_if => :all_blank, :allow_destroy => true
+
+  mount_uploader :cover, ReceipeCoverUploader
 end

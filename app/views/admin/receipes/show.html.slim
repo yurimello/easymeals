@@ -7,3 +7,4 @@ h3 Ingredients
 ul
   - @receipe.ingredient_instructions.each do |ingredient_instruction|
     li= ingredient_instruction.full_instruction
+= image_tag @receipe.cover.url

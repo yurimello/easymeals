@@ -16,6 +16,9 @@ gem "bower-rails"
 gem 'airbrake'
 gem 'simple_form'
 gem 'cocoon'
+gem 'carrierwave'
+gem 'fog', require: 'fog/aws'
+
 
 group :development do
   gem 'annotate'

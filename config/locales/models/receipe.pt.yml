@@ -8,4 +8,5 @@ pt:
         author: Autor
         category_name: Categoria
         url: Url da receita
+        cover: Foto
       # will translate User attribute "login" as "Handle"
