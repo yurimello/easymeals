@@ -6,4 +6,10 @@
       = render 'step_fields', :f => step
     .links
       = link_to_add_association 'add step', f, :steps
-  = f.submit
+  h3 Ingredients
+  #ingredient_instructions
+    = f.simple_fields_for :ingredient_instructions do |ingredient_instruction|
+      = render 'ingredient_instruction_fields', :f => ingredient_instruction
+    .links
+      = link_to_add_association 'add ingredient', f, :ingredient_instructions
+  = f.submit "Create Receipe"

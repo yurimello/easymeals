@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520005214) do
+ActiveRecord::Schema.define(version: 20150523044437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150520005214) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ingredient_receipes", force: :cascade do |t|
+  create_table "ingredient_instructions", force: :cascade do |t|
     t.integer  "ingredient_id"
     t.integer  "receipe_id"
     t.string   "quantity"
@@ -30,10 +30,11 @@ ActiveRecord::Schema.define(version: 20150520005214) do
     t.string   "metering"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "name"
   end
 
-  add_index "ingredient_receipes", ["ingredient_id"], name: "index_ingredient_receipes_on_ingredient_id", using: :btree
-  add_index "ingredient_receipes", ["receipe_id"], name: "index_ingredient_receipes_on_receipe_id", using: :btree
+  add_index "ingredient_instructions", ["ingredient_id"], name: "index_ingredient_instructions_on_ingredient_id", using: :btree
+  add_index "ingredient_instructions", ["receipe_id"], name: "index_ingredient_instructions_on_receipe_id", using: :btree
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
@@ -50,22 +51,23 @@ ActiveRecord::Schema.define(version: 20150520005214) do
     t.datetime "updated_at",  null: false
     t.integer  "category_id"
     t.string   "url"
+    t.string   "author"
   end
 
   add_index "receipes", ["category_id"], name: "index_receipes_on_category_id", using: :btree
 
   create_table "steps", force: :cascade do |t|
-    t.text     "how_to"
     t.integer  "position"
     t.integer  "receipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
   add_index "steps", ["receipe_id"], name: "index_steps_on_receipe_id", using: :btree
 
-  add_foreign_key "ingredient_receipes", "ingredients"
-  add_foreign_key "ingredient_receipes", "receipes"
+  add_foreign_key "ingredient_instructions", "ingredients"
+  add_foreign_key "ingredient_instructions", "receipes"
   add_foreign_key "receipes", "categories"
   add_foreign_key "steps", "receipes"
 end
