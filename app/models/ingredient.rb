@@ -9,5 +9,9 @@
 #
 
 class Ingredient < ActiveRecord::Base
-  has_many :ingredient_receipes, dependent: :destroy
+  has_many :ingredient_instructions, dependent: :destroy
+
+  def human_name
+    name.gsub("-", " ")
+  end
 end

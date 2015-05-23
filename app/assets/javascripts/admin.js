@@ -17,3 +17,4 @@
 // require morrisjs/morris.min
 // require startbootstrap-sb-admin-2/js/morris-data
 //= require startbootstrap-sb-admin-2/dist/js/sb-admin-2
+//= require cocoon

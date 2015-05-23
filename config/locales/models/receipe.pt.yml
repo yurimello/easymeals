@@ -1,0 +1,11 @@
+pt:
+  activerecord:
+    models:
+      receipe: Receita
+    attributes:
+      receipe:
+        name: Nome
+        author: Autor
+        category_name: Categoria
+        url: Url da receita
+      # will translate User attribute "login" as "Handle"

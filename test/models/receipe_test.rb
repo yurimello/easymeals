@@ -10,6 +10,8 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  category_id :integer
+#  url         :string
+#  author      :string
 #
 
 require 'test_helper'

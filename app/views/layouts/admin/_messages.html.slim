@@ -1,0 +1,8 @@
+- message = flash
+- if !message[:error].blank?
+  .alert.alert-danger
+    = flash[:error]
+- if !message[:success].blank?
+  .alert.alert-success.alert-dismissable
+    button.close type="button" data-dismiss="alert" aria-hidden="true" ×
+    = flash[:success]
