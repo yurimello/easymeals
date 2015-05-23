@@ -1,0 +1,49 @@
+- 2.times { @receipe.steps.build } if @receipe.steps.empty?
+- 2.times { @receipe.ingredient_instructions.build } if @receipe.ingredient_instructions.empty?
+.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading= yield :receipe_heading
+      .panel-body
+        .row
+          .col-lg-12
+            = simple_form_for(@receipe, url: url, html: { class: 'form-vertical', role: 'form' }) do |f|
+              .row
+                .col-lg-6
+                  = f.input :name
+                .col-lg-6
+                  = f.input :category_name
+              .row
+                .col-lg-6
+                  = f.input :author
+                .col-lg-6
+                  = f.input :url
+              .row
+                .col-lg-6
+                  .row
+                    .col-lg-12
+                      .panel.panel-default
+                        .panel-heading= t('.ingredients-heading')
+                        .panel-body
+                          .row
+                            .col-lg-12                
+                              #ingredient_instructions
+                                = f.simple_fields_for :ingredient_instructions do |ingredient_instruction|
+                                  = render 'ingredient_instruction_fields', :f => ingredient_instruction
+                                .links
+                                  = link_to_add_association t('admin.receipes.add_ingredient'), f, :ingredient_instructions
+                .col-lg-6
+                  .row
+                    .col-lg-12
+                      .panel.panel-default
+                        .panel-heading= t('.steps-heading')
+                        .panel-body
+                          .row
+                            .col-lg-12
+                              #steps
+                                = f.simple_fields_for :steps do |step|
+                                  = render 'step_fields', :f => step
+
+                                .links
+                                  = link_to_add_association t('admin.receipes.add_step'), f, :steps
+              = f.submit t("admin.receipes.save"), class: 'btn btn-primary'

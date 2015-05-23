@@ -1,0 +1,15 @@
+pt:
+  activerecord:
+    models:
+      step: Passo
+    attributes:
+      step:
+        description: Descrição
+        scope: Escopo
+    errors:
+      models:
+        step:
+          attributes:
+            description:
+              blank: Descrição do passo não pode ficar em branco
+      # will translate User attribute "login" as "Handle"
