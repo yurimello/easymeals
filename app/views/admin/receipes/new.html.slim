@@ -1,0 +1,9 @@
+= simple_form_for(@receipe, url: admin_receipes_path(@form), html: { class: 'form-horizontal' }) do |f|
+  = f.input :name
+  h3 Steps
+  #steps
+    = f.simple_fields_for :steps do |step|
+      = render 'step_fields', :f => step
+    .links
+      = link_to_add_association 'add step', f, :steps
+  = f.submit

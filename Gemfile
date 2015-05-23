@@ -15,11 +15,7 @@ gem 'seed-fu'
 gem "bower-rails"
 gem 'airbrake'
 gem 'simple_form'
-
-# Trailblazer architecture
-gem 'trailblazer', git: 'https://github.com/apotonick/trailblazer.git'
-gem 'reform'
-gem 'cells'
+gem 'cocoon'
 
 group :development do
   gem 'annotate'
@@ -32,5 +28,6 @@ group :development, :test do
   gem 'spring'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'selenium-webdriver'
 end
 
