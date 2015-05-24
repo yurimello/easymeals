@@ -1,4 +1,8 @@
 pt:
+  receipe:
+    menu_group:
+      breakfest: Café da manhã/Lanche
+      lunch_dinner: Almoço/Jantar
   activerecord:
     models:
       receipe: Receita
@@ -9,4 +13,11 @@ pt:
         category_name: Categoria
         url: Url da receita
         cover: Foto
+        yield: Rendimento
+        time_to_do: Tempo de preparo
+        menu_group: Ocasião do dia
+        cuisine_list: Cozinhas
+        occasion_list: Ocasiões
+        allergy_list: Alergias
+        diet_list: Dietas
       # will translate User attribute "login" as "Handle"

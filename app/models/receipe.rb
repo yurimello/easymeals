@@ -27,4 +27,11 @@ class Receipe < ActiveRecord::Base
   accepts_nested_attributes_for :ingredient_instructions, :reject_if => :all_blank, :allow_destroy => true
 
   mount_uploader :cover, ReceipeCoverUploader
+
+  MENU_GROUPS = [
+    I18n.t("receipe.menu_group.breakfest"),
+    I18n.t("receipe.menu_group.lunch_dinner")
+  ]
+
+  acts_as_taggable_on :cuisines, :occasions, :allergies, :diets
 end
