@@ -14,6 +14,13 @@
                 .col-lg-6
                   = f.input :category_name
               .row
+                .col-lg-3
+                  = f.input :menu_group, collection: Receipe::MENU_GROUPS
+                .col-lg-3
+                  = f.input :yield
+                .col-lg-3
+                  = f.input :time_to_do
+              .row
                 .col-lg-6
                   = f.input :author
                 .col-lg-6
