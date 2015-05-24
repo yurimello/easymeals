@@ -6,6 +6,7 @@ pt:
       step:
         description: Descrição
         scope: Escopo
+        position: Posição
     errors:
       models:
         step:
