@@ -32,4 +32,6 @@ class Receipe < ActiveRecord::Base
     I18n.t("receipe.menu_group.breakfest"),
     I18n.t("receipe.menu_group.lunch_dinner")
   ]
+
+  acts_as_taggable_on :cuisines, :occasions, :allergies, :diets
 end

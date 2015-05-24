@@ -16,4 +16,8 @@ pt:
         yield: Rendimento
         time_to_do: Tempo de preparo
         menu_group: Ocasião do dia
+        cuisine_list: Cozinhas
+        occasion_list: Ocasiões
+        allergy_list: Alergias
+        diet_list: Dietas
       # will translate User attribute "login" as "Handle"

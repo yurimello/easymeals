@@ -42,6 +42,7 @@ class Admin::ReceipesController < ApplicationController
   def receipe_params
     params.require(:receipe).permit(
         :name, :author, :category_name, :url, :cover, :menu_group, :time_to_do, :yield,
+        :cuisine_list, :occasion_list, :allergie_list, :diet_list,
         steps_attributes: [:id, :_destroy, :description, :scope],
         ingredient_instructions_attributes: [:id, :_destroy, :name, :how, :quantity, :metering, :scope]
     )
