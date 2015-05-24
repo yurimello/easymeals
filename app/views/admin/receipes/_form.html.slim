@@ -32,13 +32,13 @@
                     .panel-body
                       .row
                         .col-lg-6
-                          = f.input :cuisine_list
+                          = f.input :cuisine_list, input_html: {value: @receipe.cuisine_list.try(:to_s)}
                         .col-lg-6
-                          = f.input :occasion_list
+                          = f.input :occasion_list, input_html: {value: @receipe.occasion_list.try(:to_s)}
                         .col-lg-6
-                          = f.input :allergy_list
+                          = f.input :allergy_list, input_html: {value: @receipe.allergy_list.try(:to_s)}
                         .col-lg-6
-                          = f.input :diet_list    
+                          = f.input :diet_list, input_html: {value: @receipe.diet_list.try(:to_s)}    
               .row
                 .col-lg-6
                   = f.input :cover, as: :file
