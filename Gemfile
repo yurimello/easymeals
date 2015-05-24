@@ -18,6 +18,7 @@ gem 'simple_form'
 gem 'cocoon'
 gem 'carrierwave'
 gem 'fog', require: 'fog/aws'
+gem 'acts-as-taggable-on', '~> 3.4'
 
 
 group :development do
