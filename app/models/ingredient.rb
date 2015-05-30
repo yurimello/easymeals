@@ -11,6 +11,8 @@
 class Ingredient < ActiveRecord::Base
   has_many :ingredient_instructions, dependent: :destroy
 
+  validates :name, presence: true, uniqueness: true
+
   def human_name
     name.gsub("-", " ")
   end
