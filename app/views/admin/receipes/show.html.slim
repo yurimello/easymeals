@@ -2,9 +2,7 @@ h1= @receipe.name
 h3 Steps
 ul
   - @receipe.steps.each do |step|
-    li
-      span= step.position
-      = step.description
+    li= "#{step.position} #{step.description}" 
 h3 Ingredients
 ul
   - @receipe.ingredient_instructions.each do |ingredient_instruction|

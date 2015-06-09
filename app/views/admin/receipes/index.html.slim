@@ -1,6 +1,58 @@
 - content_for :page_title, t('admin.receipes.title')
+.table-responsive
+  table.table.table-striped.m-b-none#dt
+    thead
+      tr
+        - @receipes.first.columns.each do |column|
+          th= column
+    tbody
+      / - @receipes.each do |receipe|
+      /   tr
+      /     td= receipe.name
+      /     td= receipe.category_name
+      /     td= receipe.steps_count
+      /     td= receipe.ingredients_count
+      tr
+        td[colspan="4"]
+          | Loading...
+- content_for :js_bottom do
+  javascript:
+    ls = new ListDataTable('receipes', ['id', 'name', 'category_name', 'steps_count', 'ingredients_count']); ls.load()
 
-.row
-  .col-lg-3.col-md-6
-    - @receipes.each do |receipe|
-      p= receipe.name
+/ .row
+/   .col-lg-2
+/     .panel-heading Receipe Table
+/     .panel-body
+/       .dataTable_wrapper
+/         .dataTables_wrapper.form-inline.dt-bootstrap.no-footer#dataTables-example_wrapper
+/           .row
+/             .col-sm-6
+/               #dataTables-example_length
+/                 label 
+/                   select.form-control.input-sm aria-controls="dataTables-example" name="dataTables-example_length"
+/                     option value="10" 10
+/                     option value="25" 25
+/                     option value="50" 50
+/                     option value="100" 100
+/                   / entries
+/             .col-sm-6
+/               .dataTables_filter#dataTables-example_filter
+/                 label 
+/                   input.form-control.input-sm aria-controls="dataTables-example" placeholder="" type="search"
+/           .row
+/             .col-sm-12
+/               table.table.table-striped.table-bordered.table-hover.dataTable.no-footer#dataTables-example aria-describedby="dataTables-example_info" role="grid"
+/                 thead
+/                   tr role="row"
+/                     th aria-label="Name: activate to sort column descending" aria-sort="ascending" style="width: 154px;" colspan="1" rowspan="1" aria-controls="dataTables-example" tabindex="0" class="sorting_asc" Name
+/                 tbody
+/                   - @receipes.each do |receipe|
+/                     tr.gradeA.odd role="row"
+/                       td.sorting_1= receipe.name
+          / .row
+          /   .col-sm-6
+
+    / - 
+    /   p= receipe.name
+
+

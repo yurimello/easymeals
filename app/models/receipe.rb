@@ -16,6 +16,14 @@
 #  cover         :string
 #
 
+COLUMNS = [
+  :id,
+  :name,
+  :category_name,
+  :steps_count,
+  :ingredients_count
+]
+
 class Receipe < ActiveRecord::Base
   has_many :ingredient_instructions, dependent: :destroy
   has_many :ingredients, through: :ingredient_instructions
@@ -26,6 +34,8 @@ class Receipe < ActiveRecord::Base
   accepts_nested_attributes_for :steps, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :ingredient_instructions, :reject_if => :all_blank, :allow_destroy => true
 
+  before_save :set_counters
+
   mount_uploader :cover, ReceipeCoverUploader
 
   MENU_GROUPS = [
@@ -34,4 +44,13 @@ class Receipe < ActiveRecord::Base
   ]
 
   acts_as_taggable_on :cuisines, :occasions, :allergies, :diets
+
+  def set_counters
+    self.steps_count = self.steps.count
+    self.ingredients_count = self.ingredient_instructions.count
+  end
+
+  def columns
+    COLUMNS
+  end
 end

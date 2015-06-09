@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150530171949) do
+ActiveRecord::Schema.define(version: 20150609000426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 20150530171949) do
     t.integer  "level"
     t.integer  "time_to_do"
     t.text     "obs"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "category_id"
     t.string   "url"
     t.string   "author"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20150530171949) do
     t.string   "cover"
     t.integer  "yield"
     t.string   "menu_group"
+    t.integer  "steps_count"
+    t.integer  "ingredients_count"
   end
 
   add_index "receipes", ["category_id"], name: "index_receipes_on_category_id", using: :btree

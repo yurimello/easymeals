@@ -18,3 +18,6 @@
 // require startbootstrap-sb-admin-2/js/morris-data
 //= require startbootstrap-sb-admin-2/dist/js/sb-admin-2
 //= require cocoon
+//= require datatables/media/js/jquery.dataTables.min
+//= require datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min
+//= require ./list_data_table
