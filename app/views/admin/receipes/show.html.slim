@@ -1,3 +1,10 @@
+.bg-light.lter.b-b.wrapper-md
+
+  .pull-right.header-buttons
+
+    = link_to "Listar todas as receitas", admin_receipes_path, class: "btn btn-success first-button"
+    = link_to "Editar receita", edit_admin_receipe_path(@receipe), class: "btn btn-info"
+
 h1= @receipe.name
 h3 Steps
 ul
@@ -14,10 +21,13 @@ h3 Similar Receipes
   table.table.table-striped.m-b-none#dt
     thead
       tr
-        - @receipe.columns.each do |column|
-          th= column
+        th Id
+        th Nome
+        th Proximidade
     tbody
       - Receipe.similarities_for(@receipe.id).each do |similar_receipe|
         tr
-          - similar_receipe.columns.each do |column|
-            td= similar_receipe.send(column)
+          td
+            = link_to "visualize #{similar_receipe.id}", admin_receipe_path(similar_receipe), class: 'label bg-primary'
+          td= similar_receipe.name
+          td= similar_receipe.score

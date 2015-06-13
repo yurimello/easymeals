@@ -16,15 +16,17 @@
 #  cover         :string
 #
 
-COLUMNS = [
-  :id,
-  :name,
-  :category_name,
-  :steps_count,
-  :ingredients_count
-]
 
 class Receipe < ActiveRecord::Base
+  COLUMNS = [
+    :id,
+    :name,
+    :category_name,
+    :steps_count,
+    :ingredients_count
+  ]
+
+  attr_accessor :score
   has_many :ingredient_instructions, dependent: :destroy
   has_many :ingredients, through: :ingredient_instructions
 
@@ -35,7 +37,7 @@ class Receipe < ActiveRecord::Base
   accepts_nested_attributes_for :ingredient_instructions, :reject_if => :all_blank, :allow_destroy => true
 
   before_save :set_counters
-  before_save :set_recommendation
+  # after_save :set_recommendation
 
   mount_uploader :cover, ReceipeCoverUploader
 
@@ -49,10 +51,31 @@ class Receipe < ActiveRecord::Base
   def self.similarities_for(id)
     recommender = ReceipeRecommender.new
     similarities = []
-    recommender.similarities_for(id).each do |receipe_id|
-      similarities << Receipe.find(receipe_id)
+    recommender.similarities_for(id, with_scores: true).to_h.
+    each do |receipe_id, score|
+      receipe = Receipe.find(receipe_id)
+      receipe.score = sprintf("%.3f", score)
+      similarities << receipe
     end
     similarities
+  end
+
+  def main_ingredients
+    self.ingredient_instructions.
+    where(weight: IngredientInstruction::WEIGHTS["Principal"]).
+    map(&:ingredient)
+  end
+
+  def secundary_ingredients
+    self.ingredient_instructions.
+    where(weight: IngredientInstruction::WEIGHTS["Secundario"]).
+    map(&:ingredient)
+  end
+
+  def comun_ingredients
+    self.ingredient_instructions.
+    where("weight = '?' OR weight IS NULL", IngredientInstruction::WEIGHTS["Comum"]).
+    map(&:ingredient)
   end
 
   def set_counters
@@ -60,14 +83,23 @@ class Receipe < ActiveRecord::Base
     self.ingredients_count = self.ingredient_instructions.count
   end
 
+
   def columns
     COLUMNS
   end
 
   def set_recommendation
     recommender = ReceipeRecommender.new
-    self.ingredients.each do |ingredient|
-      recommender.add_to_matrix(:ingredients, ingredient.name, self.id.to_s)
+    self.main_ingredients.each do |main_ingredient|
+      recommender.add_to_matrix(:main_ingredients, main_ingredient.name, self.id.to_s)
+    end
+
+    self.secundary_ingredients.each do |secundary_ingredient|
+      recommender.add_to_matrix(:secundary_ingredients, secundary_ingredient.name, self.id.to_s)
+    end
+
+    self.comun_ingredients.each do |comun_ingredient|
+      recommender.add_to_matrix(:comun_ingredients, comun_ingredient.name, self.id.to_s)
     end
 
     self.cuisine_list.each do |cuisine|
@@ -77,6 +109,8 @@ class Receipe < ActiveRecord::Base
     self.occasion_list.each do |occasion|
       recommender.add_to_matrix(:occasions, occasion, self.id.to_s)
     end
+
+    recommender.add_to_matrix(:categories, self.category_name.parameterize, self.id.to_s)
 
     recommender.process_items!(self.id.to_s)
 

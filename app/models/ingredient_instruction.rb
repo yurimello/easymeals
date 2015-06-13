@@ -25,6 +25,11 @@ class IngredientInstruction < ActiveRecord::Base
   validates :name, presence: true
 
 
+  WEIGHTS = {
+    "Comum" => 1,
+    "Secundario" => 2,
+    "Principal" => 3
+  }
 
 
   def full_instruction

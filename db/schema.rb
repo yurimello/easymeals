@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609000426) do
+ActiveRecord::Schema.define(version: 20150613193512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150609000426) do
     t.string   "scope"
     t.string   "param_name"
     t.float    "numeric_quantity"
+    t.integer  "weight"
   end
 
   add_index "ingredient_instructions", ["ingredient_id"], name: "index_ingredient_instructions_on_ingredient_id", using: :btree
@@ -96,6 +97,8 @@ ActiveRecord::Schema.define(version: 20150609000426) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
+  add_foreign_key "ingredient_instructions", "ingredients"
+  add_foreign_key "ingredient_instructions", "receipes"
   add_foreign_key "receipes", "categories"
-  add_foreign_key "receipes", "categories"
+  add_foreign_key "steps", "receipes"
 end

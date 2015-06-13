@@ -16,9 +16,13 @@ class ReceipeRecommender
   # input_matrix :cuisine, weight: 2.0
 
   # input_matrix :users, weight: 3.0
-  input_matrix :ingredients, weight: 3.0, measure: :sorensen_coefficient # Use Sorenson over Jaccard
-  input_matrix :cuisines, weight: 1.0, measure: :sorensen_coefficient
-  input_matrix :occasions, weight: 1.0, measure: :sorensen_coefficient
+  input_matrix :main_ingredients, weight: 3.0
+  input_matrix :secundary_ingredients, weight: 2.0
+  input_matrix :comun_ingredients, weight: 1.0
+  
+  input_matrix :categories, weight: 3.0
+  input_matrix :cuisines, weight: 1.0
+  input_matrix :occasions, weight: 1.0
 
   # o usuario yuri usou a receita strognoff
   # recommender.predictions_for("yuri", matrix_label: :users)
