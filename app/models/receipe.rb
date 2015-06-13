@@ -37,7 +37,7 @@ class Receipe < ActiveRecord::Base
   accepts_nested_attributes_for :ingredient_instructions, :reject_if => :all_blank, :allow_destroy => true
 
   before_save :set_counters
-  after_save :set_recommendation
+  # after_save :set_recommendation
 
   mount_uploader :cover, ReceipeCoverUploader
 
