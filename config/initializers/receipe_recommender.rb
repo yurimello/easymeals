@@ -1,4 +1,11 @@
-Predictor.redis = Redis.new(:url => ENV["PREDICTOR_REDIS"])
+if Rails.env == "production"
+  url = ENV["REDISTOGO_URL"]
+else
+  url = ENV["PREDICTOR_REDIS"]
+end
+# uri = URI.parse(ENV["REDISTOGO_URL"])
+# REDIS = Redis.new(:url => uri)
+Predictor.redis = Redis.new(:url => url)
 
 class ReceipeRecommender
   include Predictor::Base
