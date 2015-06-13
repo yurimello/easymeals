@@ -21,6 +21,8 @@ gem 'fog', require: 'fog/aws'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'kaminari'
 gem 'responders'
+gem 'predictor'
+gem 'redis'
 
 
 group :development do

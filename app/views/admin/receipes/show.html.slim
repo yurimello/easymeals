@@ -8,3 +8,16 @@ ul
   - @receipe.ingredient_instructions.each do |ingredient_instruction|
     li= ingredient_instruction.full_instruction
 = image_tag @receipe.cover.url
+
+h3 Similar Receipes
+.table-responsive
+  table.table.table-striped.m-b-none#dt
+    thead
+      tr
+        - @receipe.columns.each do |column|
+          th= column
+    tbody
+      - Receipe.similarities_for(@receipe.id).each do |similar_receipe|
+        tr
+          - similar_receipe.columns.each do |column|
+            td= similar_receipe.send(column)
