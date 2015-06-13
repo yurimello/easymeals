@@ -51,8 +51,9 @@ class Receipe < ActiveRecord::Base
   def self.similarities_for(id)
     recommender = ReceipeRecommender.new
     similarities = []
-    recommender.similarities_for(id, with_scores: true).to_h.
-    each do |receipe_id, score|
+    recommends = recommender.similarities_for(id, with_scores: true)
+    return [] if recommends.blank?
+    recommends.to_h.each do |receipe_id, score|
       receipe = Receipe.find(receipe_id)
       receipe.score = sprintf("%.3f", score)
       similarities << receipe
