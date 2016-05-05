@@ -26,9 +26,9 @@ class IngredientInstruction < ActiveRecord::Base
 
 
   WEIGHTS = {
-    "Comum" => 1,
-    "Secundario" => 2,
-    "Principal" => 3
+    "Common" => 1,
+    "Secondary" => 2,
+    "Primary" => 3
   }
 
 

@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :receipe do
-    factory :pasta do
+  factory :category do
+    factory :pasta_category do
       name "Pasta"
     end
   end

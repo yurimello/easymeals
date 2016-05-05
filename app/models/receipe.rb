@@ -53,9 +53,11 @@ class Receipe < ActiveRecord::Base
     similarities = []
     recommends = recommender.similarities_for(id, with_scores: true)
     return [] if recommends.blank?
-    recommends.each do |r|
-      receipe = Receipe.find(r[0])
-      receipe.score = sprintf("%.3f", r[1])
+    recommends.each do |recommend|
+      score = recommend[1].round(3)
+      receipe_id = recommend[0]
+      receipe = Receipe.find(receipe_id)
+      receipe.score = score
       similarities << receipe
     end
     similarities
@@ -67,19 +69,19 @@ class Receipe < ActiveRecord::Base
 
   def main_ingredients
     self.ingredient_instructions.
-    where(weight: IngredientInstruction::WEIGHTS["Principal"]).
+    where(weight: IngredientInstruction::WEIGHTS["Primary"]).
     map(&:ingredient)
   end
 
   def secundary_ingredients
     self.ingredient_instructions.
-    where(weight: IngredientInstruction::WEIGHTS["Secundario"]).
+    where(weight: IngredientInstruction::WEIGHTS["Secondary"]).
     map(&:ingredient)
   end
 
   def common_ingredients
     self.ingredient_instructions.
-    where("weight = '?' OR weight IS NULL", IngredientInstruction::WEIGHTS["Comum"]).
+    where("weight = '?' OR weight IS NULL", IngredientInstruction::WEIGHTS["Common"]).
     map(&:ingredient)
   end
 
