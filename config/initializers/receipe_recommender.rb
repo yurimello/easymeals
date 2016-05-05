@@ -18,7 +18,7 @@ class ReceipeRecommender
   # input_matrix :users, weight: 3.0
   input_matrix :main_ingredients, weight: 5.0
   input_matrix :secundary_ingredients, weight: 2.0
-  input_matrix :comun_ingredients, weight: 1.0
+  input_matrix :common_ingredients, weight: 1.0
   
   input_matrix :categories, weight: 3.0
   input_matrix :cuisines, weight: 1.0

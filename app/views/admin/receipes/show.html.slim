@@ -25,7 +25,7 @@ h3 Similar Receipes
         th Nome
         th Proximidade
     tbody
-      - Receipe.similarities_for(@receipe.id).each do |similar_receipe|
+      - @receipe.similars.each do |similar_receipe|
         tr
           td
             = link_to "visualize #{similar_receipe.id}", admin_receipe_path(similar_receipe), class: 'label bg-primary'

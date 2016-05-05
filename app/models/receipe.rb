@@ -61,6 +61,10 @@ class Receipe < ActiveRecord::Base
     similarities
   end
 
+  def similars
+    Receipe.similarities_for(self.id)
+  end
+
   def main_ingredients
     self.ingredient_instructions.
     where(weight: IngredientInstruction::WEIGHTS["Principal"]).
@@ -73,7 +77,7 @@ class Receipe < ActiveRecord::Base
     map(&:ingredient)
   end
 
-  def comun_ingredients
+  def common_ingredients
     self.ingredient_instructions.
     where("weight = '?' OR weight IS NULL", IngredientInstruction::WEIGHTS["Comum"]).
     map(&:ingredient)
@@ -89,36 +93,6 @@ class Receipe < ActiveRecord::Base
     COLUMNS
   end
 
-  def flush_recommendation
-    recommender = ReceipeRecommender.new
-    recommender.delete_item!(self.id.to_s)
-    
-    self.main_ingredients.each do |main_ingredient|
-      recommender.add_to_matrix(:main_ingredients, main_ingredient.name, self.id.to_s)
-    end
-
-    self.secundary_ingredients.each do |secundary_ingredient|
-      recommender.add_to_matrix(:secundary_ingredients, secundary_ingredient.name, self.id.to_s)
-    end
-
-    self.comun_ingredients.each do |comun_ingredient|
-      recommender.add_to_matrix(:comun_ingredients, comun_ingredient.name, self.id.to_s)
-    end
-
-    self.cuisine_list.each do |cuisine|
-      recommender.add_to_matrix(:cuisines, cuisine, self.id.to_s)
-    end
-
-    self.occasion_list.each do |occasion|
-      recommender.add_to_matrix(:occasions, occasion, self.id.to_s)
-    end
-
-    recommender.add_to_matrix(:categories, self.category_name.parameterize, self.id.to_s)
-
-    recommender.process_items!(self.id.to_s)
-    recommender.delete_from_matrix!(:topics, "course-1")
-  end
-
   def set_recommendation
     recommender = ReceipeRecommender.new
     self.main_ingredients.each do |main_ingredient|
@@ -129,8 +103,8 @@ class Receipe < ActiveRecord::Base
       recommender.add_to_matrix(:secundary_ingredients, secundary_ingredient.name, self.id.to_s)
     end
 
-    self.comun_ingredients.each do |comun_ingredient|
-      recommender.add_to_matrix(:comun_ingredients, comun_ingredient.name, self.id.to_s)
+    self.common_ingredients.each do |comun_ingredient|
+      recommender.add_to_matrix(:common_ingredients, comun_ingredient.name, self.id.to_s)
     end
 
     self.cuisine_list.each do |cuisine|
