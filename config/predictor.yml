@@ -1,0 +1,7 @@
+predictor:
+  development: 
+    redis_url: <%= ENV["PREDICTOR_REDIS"] %>
+  test:
+    redis_url: <%= ENV["PREDICTOR_REDIS"] %>
+  production: 
+    redis_url: <%= ENV["REDISTOGO_URL"] %>

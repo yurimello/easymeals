@@ -1,8 +1,4 @@
-if Rails.env == "production"
-  url = ENV["REDISTOGO_URL"]
-else
-  url = ENV["PREDICTOR_REDIS"]
-end
+url = Rails.configuration.x.predictor['redis_url']
 # uri = URI.parse(ENV["REDISTOGO_URL"])
 # REDIS = Redis.new(:url => uri)
 Predictor.redis = Redis.new(:url => url)

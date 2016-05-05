@@ -28,5 +28,7 @@ module Easymeals
     config.generators do |g|
         g.factory_girl dir: 'spec/factories'
     end
+
+    config.x.predictor = config_for(:predictor)
   end
 end
